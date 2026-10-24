@@ -30,6 +30,11 @@ Each skill lives in its own folder with two files:
 | [Beta program manager](beta-program-manager/) | Beta plans with exit criteria set up front, tracking, and a go-live readout |
 | [Deprecation plan](deprecation-plan/) | Retires a feature with a timeline, customer messages, and a plan for stragglers |
 | [Retro facilitation](retro-facilitation/) | Runs a retro that ends with two or three owned changes |
+| [Quarterly planning prep](quarterly-planning-prep/) | A pre-read with results, inputs, capacity, and the decisions planning must make |
+| [Support escalation patterns](support-escalation-patterns/) | Finds the root causes behind tickets and what would fix each |
+| [Tool stack audit](tool-stack-audit/) | Inventories tools, cost, overlap, and owners, with keep / cut recommendations |
+| [Vendor evaluation scorecard](vendor-evaluation-scorecard/) | Weighted, evidence-based comparison of vendors and a defensible pick |
+| [New PM onboarding pack](new-pm-onboarding-pack/) | A day-one pack and 30/60/90 plan for new product hires |
 
 ## Using these skills
 
