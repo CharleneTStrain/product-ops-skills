@@ -35,6 +35,12 @@ Each skill lives in its own folder with two files:
 | [Tool stack audit](tool-stack-audit/) | Inventories tools, cost, overlap, and owners, with keep / cut recommendations |
 | [Vendor evaluation scorecard](vendor-evaluation-scorecard/) | Weighted, evidence-based comparison of vendors and a defensible pick |
 | [New PM onboarding pack](new-pm-onboarding-pack/) | A day-one pack and 30/60/90 plan for new product hires |
+| [Feature flag tracking](feature-flag-tracking/) | A plain-words register of what's on, for whom, and when it comes out |
+| [Duplicate request merging](duplicate-request-merging/) | Merges the same need filed many ways, keeping every requester |
+| [Ritual calendar](ritual-calendar/) | Designs or audits a team's meeting rhythm so each one has a purpose and output |
+| [Customer advisory board prep](customer-advisory-board-prep/) | Goals, agenda, questions, and follow-through for CAB sessions |
+| [Pricing and packaging change log](pricing-packaging-change-log/) | Records every pricing change and tracks it into every system |
+| [Data request router](data-request-router/) | Turns "can I get a number?" into a clear, routed request |
 
 ## Using these skills
 
