@@ -25,6 +25,11 @@ Each skill lives in its own folder with two files:
 | [Experiment log](experiment-log/) | Briefs before a test, results and decisions after, all searchable |
 | [Roadmap hygiene](roadmap-hygiene/) | Finds stale, ownerless, vague, and overpromised roadmap items |
 | [Cross-team dependency map](cross-team-dependency-map/) | Shows who's waiting on whom, by when, and what's at risk |
+| [Sprint review summary](sprint-review-summary/) | Translates what engineering shipped into what it means for everyone else |
+| [Internal enablement brief](internal-enablement-brief/) | One page for sales, support, and success before customers hear about a change |
+| [Beta program manager](beta-program-manager/) | Beta plans with exit criteria set up front, tracking, and a go-live readout |
+| [Deprecation plan](deprecation-plan/) | Retires a feature with a timeline, customer messages, and a plan for stragglers |
+| [Retro facilitation](retro-facilitation/) | Runs a retro that ends with two or three owned changes |
 
 ## Using these skills
 
