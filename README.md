@@ -20,6 +20,11 @@ Each skill lives in its own folder with two files:
 | [Voice of customer digest](voice-of-customer-digest/) | A one-screen recurring summary of what customers said and what changed |
 | [Meeting to action converter](meeting-to-action-converter/) | Turns meeting notes into action items with one owner and a due date each |
 | [RACI builder](raci-builder/) | Builds a who-does / who-decides chart and flags ownership gaps |
+| [Product metrics definitions](product-metrics-definitions/) | One agreed definition per metric, so every dashboard means the same thing |
+| [KPI health check](kpi-health-check/) | Flags which numbers are actually off and what to check next |
+| [Experiment log](experiment-log/) | Briefs before a test, results and decisions after, all searchable |
+| [Roadmap hygiene](roadmap-hygiene/) | Finds stale, ownerless, vague, and overpromised roadmap items |
+| [Cross-team dependency map](cross-team-dependency-map/) | Shows who's waiting on whom, by when, and what's at risk |
 
 ## Using these skills
 
