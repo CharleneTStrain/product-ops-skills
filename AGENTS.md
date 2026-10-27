@@ -22,6 +22,7 @@ product-ops-skills/
 │   └── skill-name/
 │       ├── SKILL.md         # instructions the agent follows
 │       └── README.md        # what it solves, for people
+├── site/                  # the library website (index.html), published to GitHub Pages
 ├── validate-skills.sh
 ├── VERSIONS.md
 ├── CONTRIBUTING.md
@@ -43,4 +44,5 @@ Skills are content only; there's no build. Run `./validate-skills.sh` after any 
 
 - Bump the skill's `metadata.version`.
 - If you add, remove, or rename a skill, update the README tables, the "how skills work together" diagram, and `VERSIONS.md`, and bump the version in both files under `.claude-plugin/`.
+- If you add, remove, or rename a skill, also update the skill data inside `site/index.html`.
 - Keep the library's rules (see CONTRIBUTING.md): one named owner per open item, decided vs. discussed kept separate, nothing invented, plain words.

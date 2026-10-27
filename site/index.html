@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="31 open-source product ops skills for Claude Code and other AI agents: launches, customer feedback, metrics, planning, decisions, and docs.">
+<meta property="og:title" content="Product Ops Skills for AI Agents">
+<meta property="og:description" content="31 open-source product ops skills for Claude Code and other AI agents.">
+<meta property="og:image" content="https://charlenetstrain.github.io/product-ops-skills/icon.png">
+<link rel="icon" type="image/png" href="icon.png">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Product Ops Skills</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a drafting sheet — grid ground, title block footer, sheet labels on each section; boxes coded gray = agent, rust = handoff, black = people */
+:root{
+  --paper:#F3F0EA; --grid:#E6E1D7; --grid-major:#D9D2C5;
+  --ink:#1A1816; --ink-2:#55504A; --rule:#CFC7B9;
+  --rust:#B8552C; --rust-ink:#FFFFFF; --agent:#D6CFC3; --panel:#FBFAF7; --black:#1A1816; --on-black:#F3F0EA;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --track:.14em;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#161412; --grid:#211E1B; --grid-major:#2C2824; --ink:#EEE9E1; --ink-2:#ADA59A; --rule:#3A352F;
+  --rust:#D46A3D; --rust-ink:#160D08; --agent:#3E3934; --panel:#1E1B18; --black:#EEE9E1; --on-black:#161412; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#161412; --grid:#211E1B; --grid-major:#2C2824; --ink:#EEE9E1; --ink-2:#ADA59A; --rule:#3A352F;
+  --rust:#D46A3D; --rust-ink:#160D08; --agent:#3E3934; --panel:#1E1B18; --black:#EEE9E1; --on-black:#161412; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--sans);
+  background-image:linear-gradient(var(--grid-major) 1px,transparent 1px),linear-gradient(90deg,var(--grid-major) 1px,transparent 1px),linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.caps{text-transform:uppercase;letter-spacing:var(--track)}
+.mono{font-family:var(--mono)}
+.label{font:500 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--ink-2)}
+:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--ink)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.bar{display:flex;align-items:center;gap:24px;padding-block:14px;flex-wrap:wrap}
+.mark{font:600 13px/1 var(--sans);text-transform:uppercase;letter-spacing:.2em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.mark i{display:inline-flex;gap:3px}.mark i b{width:9px;height:9px;display:block}
+.nav{display:flex;gap:20px;margin-left:auto;flex-wrap:wrap}
+.nav a{font:500 12px/1 var(--sans);text-transform:uppercase;letter-spacing:.14em;text-decoration:none;color:var(--ink-2)}
+.nav a:hover{color:var(--ink)}
+.nav a.gh{color:var(--ink);border:1px solid var(--ink);padding:7px 10px}
+
+section{padding-block:72px;border-bottom:1px solid var(--rule)}
+.sheet{display:flex;justify-content:space-between;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+h2{font:600 clamp(22px,3.2vw,30px)/1.2 var(--sans);text-transform:uppercase;letter-spacing:.12em;margin:0;text-wrap:balance}
+h2 em{font-style:normal;color:var(--rust)}
+.lede{max-width:62ch;color:var(--ink-2);margin:12px 0 0}
+
+/* hero */
+.hero{padding-block:72px 56px}
+.hero h1{font:600 clamp(34px,7vw,76px)/1.02 var(--sans);text-transform:uppercase;letter-spacing:.1em;margin:18px 0 0;text-wrap:balance}
+.hero h1 span{display:block;color:var(--rust)}
+.hero p.sub{font-size:clamp(17px,2vw,20px);max-width:58ch;margin:24px 0 32px}
+.term{background:var(--black);color:var(--on-black);font:400 14px/1.6 var(--mono);max-width:720px;border:1px solid var(--black)}
+.term .top{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-bottom:1px solid color-mix(in srgb,var(--on-black) 20%,transparent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.term .body{padding:16px;overflow-x:auto}
+.term .line{white-space:nowrap}
+.term .ok{color:var(--rust)}
+.copy{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;background:transparent;color:inherit;border:1px solid currentColor;padding:6px 9px;cursor:pointer}
+.copy:hover{background:var(--rust);border-color:var(--rust);color:var(--rust-ink)}
+.cta{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.btn{font:600 12px/1 var(--sans);text-transform:uppercase;letter-spacing:.14em;text-decoration:none;padding:14px 18px;border:1px solid var(--ink)}
+.btn.solid{background:var(--rust);border-color:var(--rust);color:var(--rust-ink)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:2px 2px 0 var(--ink)}
+.specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--ink);margin-top:48px;background:var(--panel)}
+.specs div{padding:14px 16px;border-right:1px solid var(--ink)}
+.specs div:last-child{border-right:0}
+.specs strong{display:block;font:600 26px/1.1 var(--sans);font-variant-numeric:tabular-nums}
+@media (max-width:640px){.specs{grid-template-columns:repeat(2,minmax(0,1fr))}.specs div:nth-child(2){border-right:0}.specs div:nth-child(-n+2){border-bottom:1px solid var(--ink)}}
+
+/* how it works diagram */
+.diagram{overflow-x:auto;border:1px solid var(--ink);background:var(--panel);padding:28px}
+.dg{min-width:860px;display:grid;gap:0}
+.ctx{justify-self:center;width:420px;background:var(--black);color:var(--on-black);padding:16px 18px;text-align:center}
+.ctx b{font:600 13px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.16em;display:block}
+.ctx small{font:400 12px/1.4 var(--mono);opacity:.8}
+.wires{height:44px;position:relative}
+.wires svg{position:absolute;inset:0;width:100%;height:100%}
+.cols{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.col{border:1px solid var(--ink);background:var(--paper)}
+.col h3{margin:0;padding:10px;font:600 11px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.12em;background:var(--agent);border-bottom:1px solid var(--ink);min-height:52px}
+.col ul{list-style:none;margin:0;padding:8px 10px;display:grid;gap:4px}
+.col li button{all:unset;cursor:pointer;font:400 12px/1.35 var(--mono);color:var(--ink-2)}
+.col li button:hover,.col li button:focus-visible{color:var(--rust);text-decoration:underline}
+.chains{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:28px}
+.chain{border:1px solid var(--ink);background:var(--panel);padding:14px}
+.chain .flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0}
+.chain .node{font:500 12px/1.2 var(--mono);padding:6px 8px;background:var(--agent);border:1px solid var(--ink);cursor:pointer}
+.chain .node:hover{background:var(--rust);color:var(--rust-ink);border-color:var(--rust)}
+.chain .arr{font:500 14px/1 var(--mono);color:var(--rust)}
+.chain p{margin:0;color:var(--ink-2);font-size:14px}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--ink)}
+.rule{padding:22px 18px;border-right:1px solid var(--ink);background:var(--panel);display:flex;flex-direction:column;gap:10px}
+.rule:last-child{border-right:0;background:var(--black);color:var(--on-black)}
+.rule:last-child .label{color:inherit;opacity:.7}
+.rule h3{margin:0;font:600 16px/1.3 var(--sans);text-wrap:balance}
+.rule p{margin:0;font-size:14px;color:inherit;opacity:.8}
+@media (max-width:820px){.rules{grid-template-columns:1fr 1fr}.rule:nth-child(2){border-right:0}.rule:nth-child(-n+2){border-bottom:1px solid var(--ink)}}
+@media (max-width:480px){.rules{grid-template-columns:1fr}.rule{border-right:0;border-bottom:1px solid var(--ink)}.rule:last-child{border-bottom:0}}
+
+/* library */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.chip{font:500 11px/1 var(--sans);text-transform:uppercase;letter-spacing:.12em;padding:9px 11px;border:1px solid var(--ink);background:var(--panel);cursor:pointer;color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.chip .n{font-family:var(--mono);opacity:.6;margin-left:6px}
+.search{margin-left:auto;font:400 14px/1 var(--mono);padding:9px 12px;border:1px solid var(--ink);background:var(--panel);color:var(--ink);min-width:0;width:240px}
+@media (max-width:640px){.search{margin-left:0;width:100%}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--ink);background:var(--panel);min-width:0}
+.card:hover,.card:focus-visible{box-shadow:4px 4px 0 var(--rust);transform:translate(-2px,-2px)}
+.card .id{font:500 12px/1.3 var(--mono);color:var(--rust);word-break:break-word}
+.card h3{margin:0;font:600 16px/1.3 var(--sans)}
+.card p{margin:0;font-size:14px;color:var(--ink-2)}
+.card .cat{margin-top:auto;padding-top:8px}
+.card.start{background:var(--black);color:var(--on-black)}
+.card.start p,.card.start .label{color:inherit;opacity:.8}
+.empty{padding:28px;border:1px dashed var(--ink);text-align:center;color:var(--ink-2)}
+
+/* detail drawer */
+.scrim{position:fixed;inset:0;background:color-mix(in srgb,var(--ink) 35%,transparent);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--paper);border-left:1px solid var(--ink);z-index:21;overflow-y:auto;
+  padding:calc(24px + env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) calc(32px + env(safe-area-inset-bottom,0px)) 24px}
+.drawer .x{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px))}
+.drawer h2{font-size:22px;margin-top:6px;padding-right:72px}
+.drawer .id{font:500 13px/1.3 var(--mono);color:var(--rust);margin-top:10px}
+.dl{display:grid;gap:0;border:1px solid var(--ink);margin-top:22px;background:var(--panel)}
+.dl div{padding:12px 14px;border-bottom:1px solid var(--rule)}
+.dl div:last-child{border-bottom:0}
+.dl p{margin:4px 0 0;font-size:15px}
+.rel{display:grid;gap:8px;margin-top:10px}
+.rel button{all:unset;cursor:pointer;display:flex;gap:10px;align-items:baseline;padding:10px 12px;border:1px solid var(--ink);background:var(--panel)}
+.rel button:hover,.rel button:focus-visible{border-color:var(--rust);box-shadow:3px 3px 0 var(--rust)}
+.rel b{font:500 12px/1.3 var(--mono);color:var(--rust);white-space:nowrap}
+.rel span{font-size:14px;color:var(--ink-2)}
+.cmd{display:flex;align-items:center;gap:10px;justify-content:space-between;background:var(--black);color:var(--on-black);padding:12px 14px;margin-top:10px}
+.cmd code{font:400 13px/1.4 var(--mono);overflow-x:auto;white-space:nowrap;min-width:0}
+.drawer h4{margin:26px 0 0}
+
+/* install */
+.tabs{display:flex;border:1px solid var(--ink);border-bottom:0;flex-wrap:wrap;background:var(--panel)}
+.tab{font:600 11px/1 var(--sans);text-transform:uppercase;letter-spacing:.12em;padding:14px 16px;border:0;border-right:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.panel{border:1px solid var(--ink);background:var(--panel);padding:20px}
+.panel p{margin:0 0 12px;max-width:62ch}
+.panel pre{margin:0 0 14px;background:var(--black);color:var(--on-black);padding:14px 16px;font:400 13px/1.7 var(--mono);overflow-x:auto;position:relative}
+.panel pre .c{opacity:.55}
+.panel .copy{position:absolute;top:10px;right:10px}
+.use{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:36px}
+.ask{border:1px solid var(--ink);background:var(--panel);padding:16px;display:flex;flex-direction:column;gap:10px}
+.ask q{font-size:15px;quotes:"\201C" "\201D"}
+.ask .to{font:500 12px/1.3 var(--mono);color:var(--rust)}
+
+/* footer title block */
+footer{padding-block:56px calc(56px + env(safe-area-inset-bottom,0px))}
+.tb{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border:1px solid var(--ink);background:var(--panel)}
+.tb>div{padding:16px;border-right:1px solid var(--ink);display:flex;flex-direction:column;gap:6px;min-width:0}
+.tb>div:last-child{border-right:0}
+.tb strong{font:600 14px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.12em}
+.tb a{font-size:14px;text-decoration:none;border-bottom:1px solid var(--rule);width:fit-content}
+.tb a:hover{border-color:var(--rust);color:var(--rust)}
+@media (max-width:760px){.tb{grid-template-columns:1fr 1fr}.tb>div:nth-child(2){border-right:0}.tb>div:nth-child(-n+2){border-bottom:1px solid var(--ink)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.card:hover,.btn:hover{transform:none}}
+</style>
+
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="mark" href="#top"><i aria-hidden="true"><b style="background:var(--agent)"></b><b style="background:var(--rust)"></b><b style="background:var(--black)"></b></i>Product Ops Skills</a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#how">How it works</a><a href="#library">Skills</a><a href="#install">Install</a>
+    <a class="gh" href="https://github.com/CharleneTStrain/product-ops-skills" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+  <div class="sheet"><span class="label">Sheet 01 · Overview</span><span class="label">v1.0.0 · MIT · Oct 2026</span></div>
+  <h1>Product ops skills<span>for AI agents</span></h1>
+  <p class="sub">31 open-source skills for the work that keeps product teams running: launches, customer feedback, metrics, planning, decisions, and docs. For Claude Code, the Claude app, Codex, Cursor, and any agent that reads skills.</p>
+  <div class="term" role="group" aria-label="Install command">
+    <div class="top"><span>product-ops-skills — zsh</span><button class="copy" data-copy="npx skills add CharleneTStrain/product-ops-skills">Copy</button></div>
+    <div class="body">
+      <div class="line">$ npx skills add CharleneTStrain/product-ops-skills</div>
+      <div class="line"><span class="ok">✓</span> resolved 32 skills · claude code, codex, cursor</div>
+      <div class="line"><span class="ok">✓</span> product-ops-context installed first · read by every other skill</div>
+    </div>
+  </div>
+  <div class="cta">
+    <a class="btn solid" href="#library">Browse the 31 skills</a>
+    <a class="btn" href="https://github.com/CharleneTStrain/product-ops-skills" target="_blank" rel="noopener">View on GitHub</a>
+    <a class="btn" href="https://github.com/CharleneTStrain/product-ops-skills/issues/new?template=skill-request.yml" target="_blank" rel="noopener">Request a skill</a>
+  </div>
+  <div class="specs">
+    <div><strong>31</strong><span class="label">Skills</span></div>
+    <div><strong>6</strong><span class="label">Categories</span></div>
+    <div><strong>1</strong><span class="label">Shared context file</span></div>
+    <div><strong>MIT</strong><span class="label">Free to use and fork</span></div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <div class="sheet"><span class="label">Sheet 02 · How it works</span><span class="label">Click any skill to open it</span></div>
+  <h2>One context file. <em>Six kinds of work.</em></h2>
+  <p class="lede">Run <span class="mono">product-ops-context</span> once. It writes down your product, teams, who decides what, your meetings, your tools, and your metric definitions. Every other skill reads that file first, so it only asks you for what's specific to the job.</p>
+  <div class="diagram" style="margin-top:28px">
+    <div class="dg">
+      <div class="ctx"><b>product-ops-context</b><small>.agents/product-ops-context.md · read first by every skill</small></div>
+      <div class="wires"><svg viewBox="0 0 860 44" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M430 0 V18 M70 18 H790 M70 18 V44 M214 18 V44 M358 18 V44 M502 18 V44 M646 18 V44 M790 18 V44" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg></div>
+      <div class="cols" id="cols"></div>
+    </div>
+  </div>
+  <div class="chains" id="chains"></div>
+</div></section>
+
+<section id="rules"><div class="wrap">
+  <div class="sheet"><span class="label">Sheet 03 · Rules</span><span class="label">Built into all 31</span></div>
+  <h2>What every skill <em>refuses to do</em></h2>
+  <p class="lede">The same four rules run through the whole library, so outputs hold up when someone checks them later.</p>
+  <div class="rules" style="margin-top:28px">
+    <div class="rule"><span class="label">Rule 1</span><h3>Every open item gets one named owner.</h3><p>"Marketing" isn't an owner. Neither is "the team."</p></div>
+    <div class="rule"><span class="label">Rule 2</span><h3>Discussed and decided stay separate.</h3><p>A lean in a meeting never shows up as a decision.</p></div>
+    <div class="rule"><span class="label">Rule 3</span><h3>Nothing gets invented.</h3><p>If the notes don't say why, the output says "Not recorded."</p></div>
+    <div class="rule"><span class="label">Rule 4</span><h3>Skills recommend. People decide.</h3><p>The agent does the sorting and drafting. A person makes the call.</p></div>
+  </div>
+</div></section>
+
+<section id="library"><div class="wrap">
+  <div class="sheet"><span class="label">Sheet 04 · Library</span><span class="label" id="count"></span></div>
+  <h2>All <em>skills</em></h2>
+  <div class="tools" style="margin-top:24px">
+    <div id="chips" style="display:flex;gap:8px;flex-wrap:wrap" role="group" aria-label="Filter by category"></div>
+    <label class="label" for="q" style="position:absolute;left:-9999px">Search skills</label>
+    <input class="search" id="q" type="search" placeholder="Search: roadmap, tickets, RACI…">
+  </div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="install"><div class="wrap">
+  <div class="sheet"><span class="label">Sheet 05 · Install</span><span class="label">Pick one</span></div>
+  <h2>Install in <em>one line</em></h2>
+  <div style="margin-top:28px">
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="panel" id="panel" role="tabpanel"></div>
+  </div>
+  <div class="use" id="use"></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="tb">
+    <div><span class="label">Drawn by</span><strong>Charlene Strain</strong><span style="font-size:14px;color:var(--ink-2)">Product Operations &amp; AI Workflow Automation</span></div>
+    <div><span class="label">Library</span><a href="#library">All 31 skills</a><a href="https://github.com/CharleneTStrain/product-ops-skills/blob/main/VERSIONS.md" target="_blank" rel="noopener">Changelog</a></div>
+    <div><span class="label">Contribute</span><a href="https://github.com/CharleneTStrain/product-ops-skills/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Guide</a><a href="https://github.com/CharleneTStrain/product-ops-skills/issues/new?template=skill-request.yml" target="_blank" rel="noopener">Request a skill</a></div>
+    <div><span class="label">Find me</span><a href="https://www.linkedin.com/in/charlene-strain" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/CharleneTStrain" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+  <p class="label" style="margin-top:14px">MIT license · Sheet 05 of 05</p>
+</div></footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-labelledby="dTitle"></aside>
+
+<script>
+const DATA = {"cats": [{"name": "Start here", "blurb": "", "ids": ["product-ops-context"]}, {"name": "Launches and releases", "blurb": "Getting changes out the door, and making sure every team knows before customers do.", "ids": ["launch-readiness-checklist", "internal-enablement-brief", "release-notes-drafting", "sprint-review-summary", "beta-program-manager", "feature-flag-tracking", "deprecation-plan"]}, {"name": "Customer feedback and requests", "blurb": "Turning what customers say and ask for into something the team can count and act on.", "ids": ["request-intake-triage", "duplicate-request-merging", "feedback-tagging", "voice-of-customer-digest", "support-escalation-patterns", "customer-advisory-board-prep"]}, {"name": "Metrics and data", "blurb": "One meaning per number, and a clear path from question to answer.", "ids": ["product-metrics-definitions", "kpi-health-check", "experiment-log", "data-request-router"]}, {"name": "Planning and roadmap", "blurb": "Deciding what's next with the right inputs, and keeping the plan trustworthy.", "ids": ["quarterly-planning-prep", "roadmap-hygiene", "cross-team-dependency-map", "pricing-packaging-change-log"]}, {"name": "Decisions and ownership", "blurb": "Who decided, who owns it, and how the team gets better each cycle.", "ids": ["decision-log", "meeting-to-action-converter", "raci-builder", "retro-facilitation", "ritual-calendar"]}, {"name": "Knowledge and tools", "blurb": "Docs people can trust, tools that earn their cost, and new hires who get up to speed fast.", "ids": ["process-documentation", "information-debt-audit", "new-pm-onboarding-pack", "tool-stack-audit", "vendor-evaluation-scorecard"]}], "skills": {"product-ops-context": {"id": "product-ops-context", "title": "Product ops context", "short": "Writes down your product, teams, owners, meetings, tools, and metrics once, so every other skill can read it", "cat": "Start here", "what": "Create or update the product ops context file every other skill in this library reads first — the product, the teams and who decides what, the meeting rhythm, the tools and where things live, the metric definitions, and how launches work.", "when": "Use at the start of any new project or team before using other product ops skills, when someone says \"set up context,\" \"here's how our team works,\" \"remember our tools,\" \"update our context,\" or \"log this change,\" or whenever a skill keeps asking for the same background. It creates `.agents/product-ops-context.md`.", "problem": "Every skill needs the same background about your team, so you end up re-explaining your product, owners, meetings, and tools every time.", "does": "Writes that background down once in `.agents/product-ops-context.md` — product, teams and who decides, meeting rhythm, where things live, metric definitions, and how launches work. Every other skill in this library reads it first and only asks for what's missing. Gaps are marked \"Not recorded,\" never guessed.", "input": "team pages, onboarding docs, roadmap exports, meeting notes, or a short conversation.", "get": "a one-page, versioned context file with a changelog, kept current as your team changes.", "related": [["ritual-calendar", "uses the Operating rhythm section, and can fill it in"], ["raci-builder", "uses Teams and decisions, and can fill it in"], ["product-metrics-definitions", "writes the full definitions the Metrics section links to"], ["tool-stack-audit", "checks and fills Where things live"], ["new-pm-onboarding-pack", "turns this file into a day-one pack for a new hire"]]}, "launch-readiness-checklist": {"id": "launch-readiness-checklist", "title": "Launch readiness checklist", "short": "Runs a cross-functional go / no-go check with an owner on every gap", "cat": "Launches and releases", "what": "Check whether a feature or product launch is actually ready to ship across every team, and produce a go / no-go readout with owners on every gap.", "when": "Use when someone asks \"are we ready to launch,\" wants a launch checklist, a readiness review, a pre-launch audit, or is prepping for a go / no-go meeting.", "problem": "\"Is it ready?\" usually means \"is the code done?\" Support, sales, docs, and billing find out about the launch from customers.", "does": "Sizes the launch into a tier, walks a cross-functional checklist that scales to that tier, requires evidence before marking anything ready, and puts one named owner on every gap.", "input": "a launch plan, project tracker, or a description of where each team stands.", "get": "a go / no-go readout with blockers, risks, and owners.", "related": [["internal-enablement-brief", "brief sales, support, and success once it's a go"], ["release-notes-drafting", "tell customers what shipped"], ["cross-team-dependency-map", "find who's still waiting on whom before launch day"], ["feature-flag-tracking", "record who the launch is on for"]]}, "internal-enablement-brief": {"id": "internal-enablement-brief", "title": "Internal enablement brief", "short": "One page for sales, support, and success before customers hear about a change", "cat": "Launches and releases", "what": "Write a one-page brief that tells sales, support, and customer success exactly what's launching, who it's for, what to say, what not to promise, and where to send questions.", "when": "Use when someone is preparing a launch, a feature release, a pricing change, or any update customer-facing teams need to hear before customers do, or asks for an enablement brief, launch brief, internal FAQ, or field update.", "problem": "Sales, support, and customer success learn about changes from customers, then improvise answers or overpromise.", "does": "Writes a one-page brief with what's changing, who it's for, a line anyone can say to a customer, what not to promise, and a section each for sales, support, and customer success. Undecided items stay clearly separated.", "input": "a launch plan, spec, release notes, or pricing change details.", "get": "a one-page brief customer-facing teams can use the day it lands.", "related": [["launch-readiness-checklist", "confirm it's actually ready first"], ["release-notes-drafting", "the customer-facing version of the same news"], ["pricing-packaging-change-log", "when the change touches plans or price"]]}, "release-notes-drafting": {"id": "release-notes-drafting", "title": "Release notes drafting", "short": "Turns tickets and changelogs into customer-facing release notes", "cat": "Launches and releases", "what": "Turn engineering tickets, changelogs, PR titles or sprint summaries into customer-facing release notes.", "when": "Use whenever someone asks for release notes, a changelog entry, a \"what's new\" post, a product update email, or a monthly product drop summary, even if they only paste raw ticket titles.", "problem": "Engineering ships work described in ticket language. Customers need to know what changed for them. Someone translates by hand every release, and internal details slip through.", "does": "Sorts raw tickets or changelogs into new, improved, and fixed; drops internal-only work; rewrites each item as a plain-language outcome; and flags anything whose customer impact is unclear instead of guessing.", "input": "ticket titles, PR descriptions, a changelog, or sprint notes.", "get": "publish-ready release notes plus an internal \"needs confirmation\" list.", "related": [["sprint-review-summary", "the internal version of what shipped"], ["internal-enablement-brief", "brief the field before the notes go out"], ["feature-flag-tracking", "check what customers can actually see"]]}, "sprint-review-summary": {"id": "sprint-review-summary", "title": "Sprint review summary", "short": "Translates what engineering shipped into what it means for everyone else", "cat": "Launches and releases", "what": "Translate what engineering shipped in a sprint or cycle into a short summary of what it means for customers and the business — what's done, what slipped, and what other teams need to know.", "when": "Use when someone pastes a sprint board, completed tickets, a cycle report, or demo notes and wants a sprint recap, a stakeholder update, an engineering update for leadership, or \"what did we ship?\"", "problem": "Engineering reports in tickets and points. Leadership, sales, and support can't tell what actually changed or whether it affects them.", "does": "Sorts sprint work into shipped, done but not released, carried over, dropped, and internal; rewrites each item in plain words; and lists what each other team needs to know or do.", "input": "a sprint board export, completed tickets, a cycle report, or demo notes.", "get": "a recap anyone can read in under a minute.", "related": [["release-notes-drafting", "turn the summary into customer-facing notes"], ["roadmap-hygiene", "update the roadmap for what slipped"], ["cross-team-dependency-map", "flag what other teams need next"]]}, "beta-program-manager": {"id": "beta-program-manager", "title": "Beta program manager", "short": "Beta plans with exit criteria set up front, tracking, and a go-live readout", "cat": "Launches and releases", "what": "Plan and run a product beta from start to finish — goals, who to invite, what to ask them, how to track feedback, and the criteria for ending the beta and going live.", "when": "Use when someone is planning a beta, early access program, pilot, or design partner program, needs invite or check-in messages for beta customers, wants to summarize beta feedback, or is deciding whether a beta is ready to graduate.", "problem": "Betas run with no clear question, drift on for months, and end when someone gets tired of them instead of when they've answered anything.", "does": "Writes a beta plan with two to four learning questions and checkable exit criteria set up front, tracks who's invited and actually active, ties feedback back to the learning questions, and produces a go live / extend / stop readout.", "input": "a feature description, a list of candidate customers, or beta feedback to date.", "get": "a beta plan, a participant tracker, and an exit readout.", "related": [["feedback-tagging", "tag what beta users say"], ["feature-flag-tracking", "track who has the beta turned on"], ["launch-readiness-checklist", "run go / no-go when the beta ends"], ["experiment-log", "when the beta tests a hypothesis"]]}, "feature-flag-tracking": {"id": "feature-flag-tracking", "title": "Feature flag tracking", "short": "A plain-words register of what's on, for whom, and when it comes out", "cat": "Launches and releases", "what": "Keep a clear, current register of feature flags — what each one controls, who it's on for, who owns it, and when it should be fully rolled out or removed — so customer-facing teams know what customers can actually see and old flags don't pile up.", "when": "Use when someone shares a flag export or rollout list, asks \"who has access to X,\" wants a rollout tracker, a flag cleanup, or needs to know which features are live for which customers.", "problem": "Nobody outside engineering can answer \"can this customer see that feature?\", and old flags pile up long after full rollout.", "does": "Keeps a register of every flag in plain words: what it controls, its type, who it's on for, the owner, the target rollout date, and when it should be removed. Flags stale, ownerless, past-due, and conflicting flags, and lists partial rollouts support and sales should know about.", "input": "a flag export, rollout plan, or engineering notes.", "get": "a current flag register and a cleanup list. It never changes a flag.", "related": [["launch-readiness-checklist", "flags are part of being ready"], ["release-notes-drafting", "only announce what's actually on"], ["deprecation-plan", "when a flag is turning something off"]]}, "deprecation-plan": {"id": "deprecation-plan", "title": "Deprecation plan", "short": "Retires a feature with a timeline, customer messages, and a plan for stragglers", "cat": "Launches and releases", "what": "Plan the retirement of a feature, plan, integration, or API version — who's affected, the timeline, what customers move to, the messages they'll get, and how to handle the ones who won't move.", "when": "Use when someone is sunsetting, deprecating, retiring, or end-of-lifing anything customers use, or needs deprecation emails, a sunset timeline, or a migration plan.", "problem": "Features get retired with one email and a date. Customers are surprised, support gets flooded on the last day, and key accounts escalate.", "does": "Sizes who's affected, builds a timeline from internal prep through end date, drafts a plain-spoken customer announcement, and plans for the customers who won't move in time, including who can approve exceptions.", "input": "what's being retired, why, usage data if available, and the replacement.", "get": "a deprecation plan with a dated timeline, message drafts, and open questions.", "related": [["internal-enablement-brief", "brief the teams who'll get the questions"], ["pricing-packaging-change-log", "when plans or prices change with it"], ["feature-flag-tracking", "stage the turn-off by customer group"], ["decision-log", "record why it's being retired"]]}, "request-intake-triage": {"id": "request-intake-triage", "title": "Request intake triage", "short": "Sorts incoming requests by need, urgency, and next step, with an owner on each", "cat": "Customer feedback and requests", "what": "Sort incoming feature requests, asks, and \"can we just\" messages by source, theme, urgency, and next step, so nothing gets lost and nothing jumps the line without a reason.", "when": "Use when someone pastes a batch of requests from sales, support, customers, or leadership, asks to triage a backlog or intake queue, or wants to know which asks to act on first.", "problem": "Requests arrive from sales, support, customers, and leadership in every format. Some get lost, some jump the line because of who asked, and the same ask gets filed five times.", "does": "Restates each request as the underlying need, tags type, theme, and urgency based only on evidence, spots duplicates, and gives every request one next step and one owner. It never promises delivery.", "input": "a batch of requests from Slack, email, tickets, call notes, or a form export.", "get": "a sorted intake list (act now, route, backlog by theme, decline) plus the exact questions to send back to requesters.", "related": [["duplicate-request-merging", "merge the sorted asks into the backlog with accurate counts"], ["feedback-tagging", "use the same tags across requests and feedback"], ["data-request-router", "when the ask is really for a number"]]}, "duplicate-request-merging": {"id": "duplicate-request-merging", "title": "Duplicate request merging", "short": "Merges the same need filed many ways, keeping every requester", "cat": "Customer feedback and requests", "what": "Find feature requests, ideas, or tickets that describe the same underlying need in different words, merge them into one clean request, and keep every requester and piece of evidence attached.", "when": "Use when someone shares a backlog, ideas board, Productboard or Canny export, or request spreadsheet and asks to dedupe, consolidate, clean up, or find duplicates, or wants an accurate count of how many customers asked for something.", "problem": "The same need gets filed five different ways, so a top customer ask looks like five small ones.", "does": "Groups requests by the underlying need, not the proposed solution, merges true duplicates while keeping every requester and piece of evidence, counts unique requesters, and flags close-but-different pairs for a person to decide.", "input": "a backlog, ideas board, Productboard or Canny export, or request spreadsheet.", "get": "merged requests ranked by real demand, plus a list of possible duplicates to review.", "related": [["request-intake-triage", "sort new asks first"], ["feedback-tagging", "tag the merged requests consistently"], ["roadmap-hygiene", "connect merged requests to roadmap items"]]}, "feedback-tagging": {"id": "feedback-tagging", "title": "Feedback tagging", "short": "Classifies raw customer feedback into consistent, countable tags", "cat": "Customer feedback and requests", "what": "Classify raw customer feedback from calls, tickets, surveys, reviews, or interviews into a consistent set of tags (theme, sentiment, type, product area, customer segment) so it can be counted and compared.", "when": "Use when someone pastes a pile of feedback, a survey export, call notes, or support tickets and wants it organized, coded, or turned into something countable.", "problem": "Customer feedback piles up across calls, tickets, and surveys as unstructured text. Nobody can say how often something comes up, so the loudest anecdote wins.", "does": "Sets a small, defined tag list (or uses yours), tags every item for type, product area, theme, sentiment, and segment using the customer's own words, and counts the results. Anything that doesn't fit is surfaced as a possible new theme.", "input": "survey exports, call notes, support tickets, app reviews, or interview transcripts.", "get": "a tagged table, theme counts with sentiment and segment mix, and the tag definitions used.", "related": [["voice-of-customer-digest", "summarize the tagged feedback for leadership"], ["support-escalation-patterns", "go deeper on ticket themes"], ["duplicate-request-merging", "merge requests that show up in the feedback"]]}, "voice-of-customer-digest": {"id": "voice-of-customer-digest", "title": "Voice of customer digest", "short": "A one-screen recurring summary of what customers said and what changed", "cat": "Customer feedback and requests", "what": "Write a short, recurring digest of what customers said this week or month, what changed since last time, and what the product team should look at.", "when": "Use when someone asks for a voice of customer (VoC) report, a weekly or monthly customer feedback summary, a \"what are customers saying\" update, or wants to share feedback themes with leadership or the product team.", "problem": "Feedback gets collected but rarely reaches the people who decide what to build, and when it does, it's a wall of comments nobody reads.", "does": "Writes a one-screen digest with a single headline, the top three to five themes ranked by volume and stakes, what changed since last period, short real quotes, and specific things worth a look.", "input": "tagged feedback (pairs with the feedback-tagging skill) and the previous digest, if there is one.", "get": "a recurring update leadership and product teams can read in two minutes.", "related": [["feedback-tagging", "tag the raw feedback first"], ["support-escalation-patterns", "the ticket side of the same story"], ["quarterly-planning-prep", "feed the digest into planning"]]}, "support-escalation-patterns": {"id": "support-escalation-patterns", "title": "Support escalation patterns", "short": "Finds the root causes behind tickets and what would fix each", "cat": "Customer feedback and requests", "what": "Analyze support tickets and escalations to find which product areas, workflows, or customer types generate the most pain, what's driving it, and which fixes would remove the most tickets.", "when": "Use when someone shares a ticket export, escalation log, or support data and asks what's causing tickets, where the product is hurting customers, which bugs matter most, or how to reduce support volume.", "problem": "Support answers the same issue a hundred times, and the product team never sees the pattern behind it.", "does": "Groups tickets by root cause (not just the category agents picked), sizes each pattern by volume, escalations, time to resolve, and accounts affected, and labels what would fix it: a bug, a product gap, usability, docs, or onboarding. Calls out quick wins that need no engineering.", "input": "a ticket export or escalation log.", "get": "ranked patterns with suggested owners and the limits of the data.", "related": [["feedback-tagging", "tag ticket themes consistently"], ["voice-of-customer-digest", "roll findings into the recurring digest"], ["process-documentation", "document the fix so it sticks"]]}, "customer-advisory-board-prep": {"id": "customer-advisory-board-prep", "title": "Customer advisory board prep", "short": "Goals, agenda, questions, and follow-through for CAB sessions", "cat": "Customer feedback and requests", "what": "Prepare for a customer advisory board (CAB) or customer council session — goals, member list, agenda, pre-reads, discussion questions, and a follow-up tracker that shows members what happened with their input.", "when": "Use when someone is planning a CAB meeting, customer council, design partner session, or executive customer roundtable, needs a CAB agenda, invite, pre-read, or questions, or wants to write up and follow through on CAB feedback.", "problem": "CAB sessions turn into roadmap presentations, members never hear what happened with their input, and they stop showing up.", "does": "Sets two or three learning goals only these customers can answer, checks the member list for at-risk accounts, builds an agenda that opens with \"what we did with your input last time,\" writes open discussion questions, and produces a write-up and follow-up tracker.", "input": "the member list, last session's notes, and what the company wants to learn.", "get": "goals, agenda, questions, a one-page pre-read, and a post-session write-up with commitments.", "related": [["voice-of-customer-digest", "bring the latest themes to the session"], ["meeting-to-action-converter", "turn session notes into owned follow-ups"], ["feedback-tagging", "tag what members say alongside other feedback"]]}, "product-metrics-definitions": {"id": "product-metrics-definitions", "title": "Product metrics definitions", "short": "One agreed definition per metric, so every dashboard means the same thing", "cat": "Metrics and data", "what": "Write one clear, agreed definition for each product metric — what it measures, the exact formula, the data source, what counts and what doesn't, and who owns it — so every dashboard and meeting means the same thing by the same word.", "when": "Use when someone asks to define a metric, build a metrics glossary or dictionary, settle a \"which number is right\" argument, or document KPIs.", "problem": "Two dashboards show different \"active users\" numbers, and every meeting starts by arguing which one is right.", "does": "Collects every version of a metric in use, shows where they conflict, and writes one definition per metric: plain-language meaning, exact formula, what counts and what doesn't, time window, source, and owner. Conflicts go to a named person to decide.", "input": "dashboards, metric lists, spreadsheets, or a description of how numbers are calculated today.", "get": "a metrics glossary plus a list of conflicts to resolve.", "related": [["kpi-health-check", "check how the defined numbers are moving"], ["data-request-router", "route new number requests to the right definition"], ["experiment-log", "use the same definitions for success metrics"]]}, "kpi-health-check": {"id": "kpi-health-check", "title": "KPI health check", "short": "Flags which numbers are actually off and what to check next", "cat": "Metrics and data", "what": "Compare the latest product KPIs against their baseline, target, and recent trend, flag what's genuinely off, and say what to check next — without over-reading normal noise.", "when": "Use when someone pastes a dashboard export, weekly or monthly numbers, or a metrics table and asks \"how are we doing,\" \"anything weird this week,\" for a KPI review, or a metrics summary for a meeting.", "problem": "Weekly metrics reviews either over-react to normal noise or miss the one number that's actually drifting.", "does": "Lines up each KPI against last period, target, and its normal range; computes the changes; marks each on track, watch, off track, or can't tell; and suggests what to check next as questions, never as assumed causes.", "input": "a dashboard export or a table of recent numbers.", "get": "a one-screen readout. If everything's fine, it says so in two lines.", "related": [["product-metrics-definitions", "agree what each number means first"], ["data-request-router", "when a flag needs a deeper data pull"], ["quarterly-planning-prep", "carry results into planning"]]}, "experiment-log": {"id": "experiment-log", "title": "Experiment log", "short": "Briefs before a test, results and decisions after, all searchable", "cat": "Metrics and data", "what": "Record product experiments and A/B tests in a consistent log — hypothesis, setup, success metric, result, and the decision made — so the team stops rerunning old tests and can see what it has learned.", "when": "Use when someone is planning a test, has results to write up, asks to log an experiment, wants an experiment brief, or asks \"have we tested this before?\"", "problem": "Teams rerun tests someone already ran, or remember a flat result as a win, because nobody wrote down what was tested and what was decided.", "does": "Writes an experiment brief before the test (hypothesis, one primary metric, guardrails, what success looks like) and a result entry after (numbers as reported, what was learned, the decision, who made it). Keeps negative and inconclusive results in the log.", "input": "a test idea, an experiment plan, or results from an analysis.", "get": "consistent log entries and a searchable summary table.", "related": [["product-metrics-definitions", "define the success metric before the test"], ["decision-log", "log the decision the result led to"], ["beta-program-manager", "when the test runs as a beta"]]}, "data-request-router": {"id": "data-request-router", "title": "Data request router", "short": "Turns \"can I get a number?\" into a clear, routed request", "cat": "Metrics and data", "what": "Turn a vague \"can I get a number for X?\" into a clear data request — the exact question, the metric and definition, the source, and the right person or dashboard to answer it — and check whether the answer already exists before anyone pulls new data.", "when": "Use when someone asks for data, a metric, a report, a quick number, or an analysis and it's unclear where it lives or who owns it, or when someone is managing a queue of incoming data requests.", "problem": "\"Can I get a number for X?\" bounces between people for days because the question is vague, the answer already exists, or it went to the wrong owner.", "does": "Turns the ask into one exact question with the decision it supports, the metric and its definition, filters, comparison, and deadline. Checks for an existing dashboard or analysis first, then routes to the right owner.", "input": "any data request, or a queue of them.", "get": "a clear, routed request, or a link to the answer that already exists.", "related": [["product-metrics-definitions", "check whether a definition already exists"], ["kpi-health-check", "when the question is really 'is this number off?'"]]}, "quarterly-planning-prep": {"id": "quarterly-planning-prep", "title": "Quarterly planning prep", "short": "A pre-read with results, inputs, capacity, and the decisions planning must make", "cat": "Planning and roadmap", "what": "Gather and organize everything a product team needs before quarterly planning starts — last quarter's results, carried-over work, customer and business inputs, capacity, and the decisions planning must make — into one pre-read.", "when": "Use when someone is preparing for quarterly or half-year planning, OKR setting, a planning offsite, or asks for a planning pre-read, planning inputs, or a look-back before the next quarter.", "problem": "Planning sessions spend the first hour reconstructing last quarter, and decisions get made without capacity or customer inputs in the room.", "does": "Builds a pre-read with last quarter's results against targets, carried-over work, inputs from the business, customers, sales, product health, and engineering, known capacity, and the specific decisions planning needs to make. It informs the plan; it doesn't write it.", "input": "last quarter's goals and roadmap, metrics, release notes, feedback digests, and capacity info.", "get": "a planning pre-read the team can read before the session.", "related": [["kpi-health-check", "last quarter's results"], ["voice-of-customer-digest", "customer input for the pre-read"], ["roadmap-hygiene", "clean the roadmap before planning"], ["cross-team-dependency-map", "show what each plan depends on"]]}, "roadmap-hygiene": {"id": "roadmap-hygiene", "title": "Roadmap hygiene", "short": "Finds stale, ownerless, vague, and overpromised roadmap items", "cat": "Planning and roadmap", "what": "Review a product roadmap for stale, undated, ownerless, vague, or contradictory items and produce a short cleanup list, so the roadmap people see is one they can trust.", "when": "Use when someone shares a roadmap export, planning sheet, Jira or Linear view, or Productboard list and asks for a roadmap review, cleanup, audit, or \"is this still accurate?\"", "problem": "Roadmaps fill up with items past their date, without owners, or titled \"Phase 2,\" and people stop trusting them.", "does": "Checks every item for stale dates, missing owners or timeframes, vague titles, in-progress items with no linked work, contradictions, zombies, and customer-facing overpromises. Recommends one action per flagged item and never edits the roadmap itself.", "input": "a roadmap export, planning sheet, or a Jira, Linear, or Productboard view.", "get": "a short cleanup list with customer-facing risks at the top.", "related": [["quarterly-planning-prep", "clean up before planning starts"], ["duplicate-request-merging", "tie requests to roadmap items"], ["decision-log", "record what was cut and why"]]}, "cross-team-dependency-map": {"id": "cross-team-dependency-map", "title": "Cross-team dependency map", "short": "Shows who's waiting on whom, by when, and what's at risk", "cat": "Planning and roadmap", "what": "Map which teams or people are waiting on which others across a project, launch, or quarter — what's needed, by when, and what's at risk — so blockers surface before they slip the date.", "when": "Use when someone asks who's blocked, wants a dependency map or tracker, is planning a cross-team launch or quarter, or says work keeps stalling between teams.", "problem": "Launches slip because one team was waiting on another that didn't know it was being waited on.", "does": "Lists every specific thing one team needs from another, with a person on each side, a needed-by date, and whether the provider actually agreed. Flags unagreed asks, chains, hubs, circular waits, and missing dates, and puts a next step on each risk.", "input": "a project plan, launch checklist, tickets, or a description of who's working on what.", "get": "a dependency table with risks up top, plus an optional swim lane or flow diagram.", "related": [["raci-builder", "make ownership clear on each dependency"], ["launch-readiness-checklist", "check dependencies before launch"], ["ritual-calendar", "decide where blockers get reviewed"]]}, "pricing-packaging-change-log": {"id": "pricing-packaging-change-log", "title": "Pricing and packaging change log", "short": "Records every pricing change and tracks it into every system", "cat": "Planning and roadmap", "what": "Keep a dated record of every pricing and packaging change — what changed, which plans and customers it affects, when it took effect, who approved it, and who was told — so sales, support, finance, and billing all work from the same current version.", "when": "Use when someone is making or documenting a pricing change, moving a feature between plans, updating plan limits, asks \"what did this plan include last year,\" or needs to check that a change reached every team and system.", "problem": "A pricing change lands on the website but not in billing, the sales deck, or the help center, and nobody can say what a plan included last year.", "does": "Logs every approved change with before and after, effective date, who it applies to, grandfathering, and approver, then tracks it through every place it has to land. Answers \"what did this plan include on [date]?\" from the log.", "input": "a pricing decision, plan comparison, or record of past changes.", "get": "a dated change log and a rollout checklist per change. It never touches prices or billing.", "related": [["internal-enablement-brief", "brief sales and support on the change"], ["decision-log", "record who approved it and why"], ["deprecation-plan", "when a plan is being retired"]]}, "decision-log": {"id": "decision-log", "title": "Decision log", "short": "Pulls real decisions out of notes and threads, separated from what was only discussed", "cat": "Decisions and ownership", "what": "Capture product and cross-functional decisions as clean, searchable log entries — what was decided, by whom, why, what was ruled out, and when to revisit.", "when": "Use when someone pastes meeting notes, a Slack thread, or an email chain and wants the decisions pulled out, asks to \"log this decision,\" or wants to check whether something was actually decided.", "problem": "Decisions get made in meetings and threads, then nobody can say who decided, why, or whether it was decided at all.", "does": "Reads notes or threads and separates what was decided from what was only leaning or discussed. Logs each real decision with who, why, what was ruled out, what it affects, and when to revisit. Never fills in reasons the source doesn't give.", "input": "meeting notes, Slack threads, email chains, or transcripts.", "get": "clean log entries plus a \"not yet decided\" list with who needs to make each call.", "related": [["meeting-to-action-converter", "capture the actions from the same meeting"], ["raci-builder", "check the decider had the authority"], ["retro-facilitation", "review past decisions in a retro"]]}, "meeting-to-action-converter": {"id": "meeting-to-action-converter", "title": "Meeting to action converter", "short": "Turns meeting notes into action items with one owner and a due date each", "cat": "Decisions and ownership", "what": "Turn meeting notes, transcripts, or recordings summaries into a short recap of action items with one owner and a due date each, plus decisions and open questions.", "when": "Use when someone pastes meeting notes or a transcript and wants next steps, action items, a recap email, a follow-up message, or asks \"what did we agree to?\"", "problem": "Meetings end with agreement but no owners. A week later, everyone thought someone else was doing it.", "does": "Pulls action items, decisions, and open questions out of notes or transcripts. Gives every action one named owner and a due date, keeps \"we should\" separate from \"I will,\" and flags anything with no owner or no date.", "input": "meeting notes, transcripts, or recording summaries.", "get": "a short recap ready to paste into chat or email.", "related": [["decision-log", "log the decisions in full"], ["ritual-calendar", "check the meeting has a clear purpose"], ["cross-team-dependency-map", "track actions that block other teams"]]}, "raci-builder": {"id": "raci-builder", "title": "RACI builder", "short": "Builds a who-does / who-decides chart and flags ownership gaps", "cat": "Decisions and ownership", "what": "Build a RACI chart that makes clear, for each task or decision in a project, who does the work, who signs off, who gives input, and who just needs to know.", "when": "Use when someone asks for a RACI, a responsibility matrix, \"who owns what,\" role clarity for a project or launch, or when ownership keeps getting dropped between teams.", "problem": "On cross-team projects, two people think they make the final call, or nobody does, and the work stalls in between.", "does": "Builds a RACI chart with tasks and decisions as rows and named people as columns, then checks it for the usual failures: no one accountable, two people accountable, too many consulted, and single-person bottlenecks.", "input": "a project plan, launch checklist, or a description of who's involved.", "get": "a RACI chart, flagged problems with suggested fixes, and the ownership questions that still need an answer.", "related": [["decision-log", "record decisions the chart says who makes"], ["cross-team-dependency-map", "see where ownership gaps cause waiting"], ["process-documentation", "put owners into the SOP"]]}, "retro-facilitation": {"id": "retro-facilitation", "title": "Retro facilitation", "short": "Runs a retro that ends with two or three owned changes", "cat": "Decisions and ownership", "what": "Plan and run a retrospective after a launch, project, sprint, or incident, then turn what came out of it into a short list of changes with owners.", "when": "Use when someone asks to run a retro, post-mortem, post-launch review, lessons learned session, or after-action review, wants retro questions or an agenda, or pastes retro notes and wants them made into actions.", "problem": "Retros produce long lists of what went wrong and nothing changes afterward.", "does": "Sets up a pre-read timeline, runs a 60-minute agenda (silent writing, clustering, voting), and ends with two or three specific changes, each with an owner, a date, and a way to tell if it worked. Also turns raw retro notes into that format.", "input": "a project, launch, sprint, or incident to look back on, or notes from a retro already held.", "get": "an agenda, a pre-read outline, and a short write-up with owned changes.", "related": [["meeting-to-action-converter", "turn retro notes into owned changes"], ["process-documentation", "write the change into the process"], ["decision-log", "look back at what was decided"]]}, "ritual-calendar": {"id": "ritual-calendar", "title": "Ritual calendar", "short": "Designs or audits a team's meeting rhythm so each one has a purpose and output", "cat": "Decisions and ownership", "what": "Design or audit a product team's operating rhythm — the recurring reviews, planning sessions, retros, readouts, and syncs — so each meeting has one clear purpose, the right people, and an output, with no gaps or overlap.", "when": "Use when someone asks for a team operating cadence, meeting rhythm, ritual calendar, wants to cut meetings, set up a new team's rhythm, or figure out which meetings are actually needed.", "problem": "Teams collect recurring meetings with no clear purpose or output, while some important moments (like checking product health or hearing from customers) have no slot at all.", "does": "Audits every recurring meeting for purpose, output, cadence, and attendees; checks coverage against what a product team needs; and recommends a weekly, sprint, monthly, and quarterly rhythm, with what to cut, merge, move to async, or add, and the time saved.", "input": "a list of recurring meetings or a description of the team's current rhythm.", "get": "a recommended operating rhythm. It never changes calendar events.", "related": [["meeting-to-action-converter", "make every meeting end with owned actions"], ["raci-builder", "decide who belongs in each meeting"], ["quarterly-planning-prep", "place planning in the rhythm"]]}, "process-documentation": {"id": "process-documentation", "title": "Process documentation", "short": "Turns tribal knowledge into an SOP anyone can follow", "cat": "Knowledge and tools", "what": "Turn a messy, unwritten, or \"only one person knows how\" workflow into a clear standard operating procedure (SOP) anyone can follow.", "when": "Use when someone describes how a process works today, pastes rough notes or a voice-memo transcript about a workflow, asks for an SOP, a runbook, a how-to, or says \"can you write down how we do X.\"", "problem": "Critical workflows live in one person's head. When they're out, the work stops or gets done wrong.", "does": "Pulls the trigger, outcome, roles, tools, steps, decision points, and failure points out of rough notes, then writes an SOP a new hire could follow on the first try. Missing pieces become open questions, not guesses.", "input": "rough notes, a walkthrough transcript, a voice memo, or a Slack explanation.", "get": "a step-by-step SOP with a troubleshooting table and open questions.", "related": [["information-debt-audit", "find which processes need writing down"], ["raci-builder", "name an owner for each step"], ["new-pm-onboarding-pack", "hand new hires the SOPs that matter"]]}, "information-debt-audit": {"id": "information-debt-audit", "title": "Information debt audit", "short": "Finds stale, duplicate, conflicting, and ownerless docs and prioritizes the cleanup", "cat": "Knowledge and tools", "what": "Audit a set of docs, wikis, dashboards, decks, or folders for information debt — what's outdated, duplicated, conflicting, missing, or ownerless — and produce a prioritized cleanup list.", "when": "Use when someone says \"nobody can find anything,\" asks to clean up a wiki, Confluence space, Notion workspace, Google Drive, or shared folder, wants a content inventory, or is onboarding and finds conflicting answers.", "problem": "Every change that isn't reflected in the docs leaves debt behind: stale pages, duplicates, conflicting answers, and pages nobody owns. People stop trusting the wiki and start asking in Slack.", "does": "Inventories a workspace, diagnoses each item using Abby Covert's three types of information problems (too much, not enough, not the right information), scores findings by risk and reach, and recommends one action per item with an owner.", "input": "a folder listing, wiki export, page list, or a set of docs.", "get": "a prioritized cleanup readout. It recommends; owners decide what gets archived or deleted.", "related": [["process-documentation", "rewrite the docs the audit flags"], ["tool-stack-audit", "when the debt is spread across too many tools"], ["new-pm-onboarding-pack", "make sure new hires get current docs"]]}, "new-pm-onboarding-pack": {"id": "new-pm-onboarding-pack", "title": "New PM onboarding pack", "short": "A day-one pack and 30/60/90 plan for new product hires", "cat": "Knowledge and tools", "what": "Build an onboarding pack for a new product manager or product team member — the systems, recurring meetings, key docs, people to meet, and a first 30/60/90 days plan — so they're useful in weeks instead of months.", "when": "Use when someone is onboarding a new PM, product ops hire, or product team member, wants an onboarding doc, a first-90-days plan, a \"start here\" page, or a list of who to meet.", "problem": "New product hires spend their first month figuring out where things live and who to ask.", "does": "Builds a \"start here\" pack: the five to seven docs that matter most, the product in one page, the area they'll own, tools and access, recurring meetings and their role in each, people to meet and why, a glossary, and a checkable 30/60/90 plan. Missing docs or processes are flagged as gaps.", "input": "whatever exists about the team, product, tools, and meetings.", "get": "a day-one onboarding pack and a draft 30/60/90 plan for the manager to edit.", "related": [["process-documentation", "the SOPs a new hire needs"], ["ritual-calendar", "the meetings they'll join"], ["information-debt-audit", "check the docs you're handing them are current"]]}, "tool-stack-audit": {"id": "tool-stack-audit", "title": "Tool stack audit", "short": "Inventories tools, cost, overlap, and owners, with keep / cut recommendations", "cat": "Knowledge and tools", "what": "Inventory every tool a product or go-to-market team uses — what it's for, who uses it, what it costs, where it overlaps with others, and who owns it — and recommend what to keep, consolidate, or cut.", "when": "Use when someone asks for a tool audit, software or SaaS inventory, tech stack review, wants to cut tool spend, find overlapping tools, or figure out who owns which system.", "problem": "Teams add tools and rarely remove them. Nobody knows the total cost, which tools overlap, or who owns the renewal.", "does": "Inventories every tool by the job it does, who uses it, seats paid vs. active, cost, renewal date, and owner. Flags overlap, low use, missing owners, and upcoming renewals, then recommends keep, right-size, consolidate, cut, or investigate, including what a consolidation would lose.", "input": "a spend report, software list, or a description of what each team uses.", "get": "an audit with renewal decisions at the top. It never cancels or changes anything.", "related": [["vendor-evaluation-scorecard", "compare replacements for tools you cut"], ["information-debt-audit", "find docs stranded in retired tools"], ["raci-builder", "name an owner for each tool"]]}, "vendor-evaluation-scorecard": {"id": "vendor-evaluation-scorecard", "title": "Vendor evaluation scorecard", "short": "Weighted, evidence-based comparison of vendors and a defensible pick", "cat": "Knowledge and tools", "what": "Compare two or more vendors or tools against the same weighted criteria, using evidence from demos, trials, docs, and pricing, and produce a scorecard and recommendation the team can defend.", "when": "Use when someone is choosing between tools, running a software selection or RFP, comparing vendors, needs evaluation criteria, or wants to turn demo notes into a decision.", "problem": "Tool decisions get made on the best demo or the loudest opinion, and nobody can explain the choice six months later.", "does": "Sets must-haves and weighted criteria before looking at vendors, gathers evidence per criterion with its source, scores each on a defined 1–5 scale (no evidence scores 1), computes weighted totals, and recommends a winner and a runner-up with the risks.", "input": "demo notes, trial results, pricing, docs, or reference call notes.", "get": "a scorecard and a recommendation the team can defend.", "related": [["tool-stack-audit", "check what you already pay for first"], ["decision-log", "record the pick and why"], ["raci-builder", "decide who owns the new tool"]]}}};
+const REPO = "CharleneTStrain/product-ops-skills";
+const GH = "https://github.com/" + REPO + "/tree/main/skills/";
+const $ = s => document.querySelector(s);
+const cap = s => s ? s[0].toUpperCase() + s.slice(1) : s;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const short = {"Start here":"Start here","Launches and releases":"Launches","Customer feedback and requests":"Feedback","Metrics and data":"Metrics","Planning and roadmap":"Planning","Decisions and ownership":"Decisions","Knowledge and tools":"Knowledge"};
+
+function copyText(btn, text){
+  const done = () => { const o = btn.textContent; btn.textContent = "Copied"; setTimeout(() => btn.textContent = o, 1400); };
+  try { navigator.clipboard.writeText(text).then(done, () => fallback()); } catch(e){ fallback(); }
+  function fallback(){ const r = document.createRange(); const n = btn.closest("pre,.cmd,.term")?.querySelector("code,.line"); if(n){ r.selectNodeContents(n); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected"; } }
+}
+document.addEventListener("click", e => { const b = e.target.closest("[data-copy]"); if(b) copyText(b, b.dataset.copy); const o = e.target.closest("[data-open]"); if(o){ e.preventDefault(); openSkill(o.dataset.open); } });
+
+/* diagram columns */
+$("#cols").innerHTML = DATA.cats.slice(1).map(c => `<div class="col"><h3>${esc(c.name)}</h3><ul>${c.ids.map(id => `<li><button data-open="${id}">${id}</button></li>`).join("")}</ul></div>`).join("");
+
+const chains = [
+  ["Tell customers what changed", ["launch-readiness-checklist","internal-enablement-brief","release-notes-drafting"], "Confirm it's ready, brief the field, then tell customers."],
+  ["Hear customers clearly", ["feedback-tagging","voice-of-customer-digest"], "Tag raw feedback, then summarize it for leadership."],
+  ["Clean up the backlog", ["request-intake-triage","duplicate-request-merging"], "Sort new asks, then merge them with accurate requester counts."],
+  ["Trust the numbers", ["product-metrics-definitions","kpi-health-check"], "Agree what each number means, then check how it's moving."],
+  ["Leave the meeting with a record", ["meeting-to-action-converter","decision-log"], "Owned actions from the meeting, decisions logged in full."],
+  ["Walk into planning ready", ["kpi-health-check","roadmap-hygiene","quarterly-planning-prep"], "Last quarter's results, a clean roadmap, one pre-read."]
+];
+$("#chains").innerHTML = chains.map(([t, ids, p]) => `<div class="chain"><span class="label">${esc(t)}</span><div class="flow">${ids.map((id,i) => `${i?'<span class="arr">→</span>':''}<button class="node" data-open="${id}">${id}</button>`).join("")}</div><p>${esc(p)}</p></div>`).join("");
+
+/* library */
+let cat = "All", q = "";
+const order = DATA.cats.flatMap(c => c.ids);
+function chips(){
+  const all = [["All", order.length], ...DATA.cats.map(c => [c.name, c.ids.length])];
+  $("#chips").innerHTML = all.map(([n,k]) => `<button class="chip" aria-pressed="${n===cat}" data-cat="${esc(n)}">${esc(short[n]||n)}<span class="n">${k}</span></button>`).join("");
+}
+$("#chips").addEventListener("click", e => { const b = e.target.closest("[data-cat]"); if(!b) return; cat = b.dataset.cat; chips(); render(); });
+$("#q").addEventListener("input", e => { q = e.target.value.trim().toLowerCase(); render(); });
+function render(){
+  const list = order.map(id => DATA.skills[id]).filter(s => (cat==="All" || s.cat===cat) && (!q || [s.id,s.title,s.short,s.what,s.when,s.problem].join(" ").toLowerCase().includes(q)));
+  $("#count").textContent = list.length + " of " + order.length + " shown";
+  $("#grid").innerHTML = list.length ? list.map(s => `<button class="card${s.id==='product-ops-context'?' start':''}" data-open="${s.id}">
+      <span class="id">${s.id}</span><h3>${esc(s.title)}</h3><p>${esc(s.short)}</p><span class="label cat">${esc(s.id==='product-ops-context'?'Start here · read by every skill':s.cat)}</span></button>`).join("")
+    : `<div class="empty">No skill matches “${esc(q)}”. <a href="https://github.com/${REPO}/issues/new?template=skill-request.yml" target="_blank" rel="noopener">Request it</a>.</div>`;
+}
+chips(); render();
+
+/* drawer */
+let lastFocus = null;
+function openSkill(id, fromHash){
+  const s = DATA.skills[id]; if(!s) return;
+  const cmd = `npx skills add ${REPO} --skill ${id}`;
+  $("#drawer").innerHTML = `<button class="copy x" id="close">Close</button>
+    <span class="label">${esc(s.cat)}</span>
+    <h2 id="dTitle">${esc(s.title)}</h2>
+    <div class="id">/${id}</div>
+    <div class="dl">
+      ${s.problem?`<div><span class="label">The problem</span><p>${esc(s.problem)}</p></div>`:""}
+      <div><span class="label">What it does</span><p>${esc(s.does||s.what)}</p></div>
+      ${s.input?`<div><span class="label">Hand it</span><p>${esc(cap(s.input))}</p></div>`:""}
+      ${s.get?`<div><span class="label">You get</span><p>${esc(cap(s.get))}</p></div>`:""}
+      ${s.when?`<div><span class="label">When the agent picks it up</span><p>${esc(s.when)}</p></div>`:""}
+    </div>
+    ${s.related.length?`<h4 class="label">Hands off to</h4><div class="rel">${s.related.map(([r,why]) => `<button data-open="${r}"><b>${r}</b><span>${esc(why)}</span></button>`).join("")}</div>`:""}
+    <h4 class="label">Install just this one</h4>
+    <div class="cmd"><code>${esc(cmd)}</code><button class="copy" data-copy="${esc(cmd)}">Copy</button></div>
+    <p style="margin-top:18px"><a class="btn" href="${GH}${id}" target="_blank" rel="noopener">Read the SKILL.md on GitHub ↗</a></p>`;
+  $("#drawer").hidden = false; $("#scrim").hidden = false; $("#drawer").scrollTop = 0;
+  $("#close").addEventListener("click", closeSkill); $("#close").focus();
+  if(location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
+}
+function closeSkill(){
+  $("#drawer").hidden = true; $("#scrim").hidden = true;
+  if(DATA.skills[location.hash.slice(1)]) history.replaceState(null, "", location.pathname + location.search);
+  lastFocus?.focus?.();
+}
+$("#scrim").addEventListener("click", closeSkill);
+document.addEventListener("keydown", e => { if(e.key === "Escape" && !$("#drawer").hidden) closeSkill(); });
+document.addEventListener("focusin", e => { lastFocus = $("#drawer").hidden ? e.target : lastFocus; });
+function fromHash(){ const id = location.hash.slice(1); if(DATA.skills[id]) openSkill(id); else if(!$("#drawer").hidden) closeSkill(); }
+window.addEventListener("hashchange", fromHash); fromHash();
+
+/* install tabs */
+const tabs = [
+  ["CLI", "Recommended. Installs into whichever agents you have, and asks where.", [
+    ["# Install all skills", "npx skills add " + REPO],
+    ["# Install specific skills", "npx skills add " + REPO + " --skill decision-log launch-readiness-checklist"],
+    ["# Running it from inside Claude Code? Name the agent", "npx skills add " + REPO + " -a claude-code"]]],
+  ["Claude Code plugin", "Inside an interactive Claude Code session:", [
+    ["", "/plugin marketplace add " + REPO + "\n/plugin install product-ops-skills"],
+    ["# Outside a session", "claude plugin marketplace add " + REPO + "\nclaude plugin install product-ops-skills@product-ops-skills"]]],
+  ["Clone", "Copy the folders yourself. Use ~/.claude/skills/ for every project, or .claude/skills/ for one.", [
+    ["", "git clone https://github.com/" + REPO + ".git\ncp -r product-ops-skills/skills/* ~/.claude/skills/"]]],
+  ["Claude app", "Zip any folder from skills/ and upload it under Customize → Skills → Upload a skill. Upload product-ops-context too, so the others have something to read.", []]
+];
+let tab = 0;
+function drawTabs(){
+  $("#tabs").innerHTML = tabs.map((t,i) => `<button class="tab" role="tab" id="tab${i}" aria-selected="${i===tab}">${t[0]}</button>`).join("");
+  const [,p,blocks] = tabs[tab];
+  $("#panel").setAttribute("aria-labelledby","tab"+tab);
+  $("#panel").innerHTML = `<p>${esc(p)}</p>` + blocks.map(([c,cmd]) => `<pre>${c?`<span class="c">${esc(c)}</span>\n`:""}<code>${esc(cmd)}</code><button class="copy" data-copy="${esc(cmd)}">Copy</button></pre>`).join("");
+}
+$("#tabs").addEventListener("click", e => { const b = e.target.closest(".tab"); if(!b) return; tab = +b.id.slice(3); drawTabs(); });
+drawTabs();
+
+const asks = [
+  ["Set up our product ops context from this onboarding doc", ["product-ops-context"]],
+  ["Are we ready to launch the new billing page Thursday?", ["launch-readiness-checklist"]],
+  ["Pull the decisions out of these meeting notes", ["decision-log"]],
+  ["Here's last month's feedback export. What are customers telling us?", ["feedback-tagging","voice-of-customer-digest"]]
+];
+$("#use").innerHTML = asks.map(([a, ids]) => `<div class="ask"><span class="label">You say</span><q>${esc(a)}</q><span class="to">→ ${ids.map(id => `<a href="#${id}" data-open="${id}">${id}</a>`).join(", then ")}</span></div>`).join("");
+</script>
+
+</body>
+</html>

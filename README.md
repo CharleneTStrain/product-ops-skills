@@ -2,6 +2,8 @@
 
 31 open-source skills for the work that keeps product teams running: launches, customer feedback, metrics, planning, decisions, and docs. Built for product ops, product managers, and anyone who ends up owning "how we work." Works with Claude Code, the Claude app, OpenAI Codex, Cursor, and any agent that supports the [Agent Skills spec](https://agentskills.io).
 
+**Browse every skill at [charlenetstrain.github.io/product-ops-skills](https://charlenetstrain.github.io/product-ops-skills/).**
+
 Built by [Charlene Strain](https://www.linkedin.com/in/charlene-strain).
 
 **Contributions welcome.** Have a better way to run one of these, or a skill to add? [Open a PR](#contributing) or [request a skill](https://github.com/CharleneTStrain/product-ops-skills/issues/new?template=skill-request.yml).

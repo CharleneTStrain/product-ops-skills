@@ -1,5 +1,9 @@
 # Versions
 
+## 1.0.1 — October 27, 2026
+
+- Library website, published from `site/` to GitHub Pages
+
 ## 1.0.0 — October 27, 2026
 
 First packaged release.
