@@ -2,7 +2,8 @@
 
 ## 1.0.1 — October 27, 2026
 
-- Library website, published from `site/` to GitHub Pages
+- Library website at charlenetstrain.github.io/product-ops-skills, published from `site/` to GitHub Pages
+- Releases published from a button in Actions, with notes pulled from this file
 
 ## 1.0.0 — October 27, 2026
 
