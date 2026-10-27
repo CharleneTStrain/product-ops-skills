@@ -1,0 +1,18 @@
+{
+  "name": "product-ops-skills",
+  "owner": {
+    "name": "Charlene Strain",
+    "url": "https://www.linkedin.com/in/charlene-strain"
+  },
+  "metadata": {
+    "description": "Product operations skills for AI agents — launches, customer feedback, metrics, planning, decisions, and docs",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "product-ops-skills",
+      "description": "31 product operations skills plus a shared context file: launch readiness, enablement briefs, release notes, betas, feature flags, deprecations, request triage, feedback tagging, voice of customer, support escalations, advisory boards, metric definitions, KPI health checks, experiment logs, quarterly planning, roadmap hygiene, dependency maps, pricing change logs, decision logs, meeting actions, RACI, retros, team rhythm, SOPs, information debt, onboarding, tool audits, and vendor scorecards",
+      "source": "./"
+    }
+  ]
+}
