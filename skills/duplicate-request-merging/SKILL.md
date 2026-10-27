@@ -1,11 +1,17 @@
 ---
 name: duplicate-request-merging
 description: Find feature requests, ideas, or tickets that describe the same underlying need in different words, merge them into one clean request, and keep every requester and piece of evidence attached. Use when someone shares a backlog, ideas board, Productboard or Canny export, or request spreadsheet and asks to dedupe, consolidate, clean up, or find duplicates, or wants an accurate count of how many customers asked for something.
+metadata:
+  version: 1.0.0
 ---
 
 # Duplicate request merging
 
 The same need gets filed five ways: "CSV export," "download my data," "get reports into Excel," "export button," "send data to finance." Counted separately, each looks minor. Merged, it's one of the top asks. Merging done carelessly, though, hides real differences.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Group by underlying need
 
@@ -57,3 +63,9 @@ Count requesters as unique accounts or people, not original requests. One accoun
 ```
 
 Recommend merges; don't delete or merge records in any tool yourself. Never drop a requester or piece of evidence during a merge.
+
+## Related skills
+
+- **request-intake-triage** — sort new asks first
+- **feedback-tagging** — tag the merged requests consistently
+- **roadmap-hygiene** — connect merged requests to roadmap items

@@ -1,11 +1,17 @@
 ---
 name: internal-enablement-brief
 description: Write a one-page brief that tells sales, support, and customer success exactly what's launching, who it's for, what to say, what not to promise, and where to send questions. Use when someone is preparing a launch, a feature release, a pricing change, or any update customer-facing teams need to hear before customers do, or asks for an enablement brief, launch brief, internal FAQ, or field update.
+metadata:
+  version: 1.0.0
 ---
 
 # Internal enablement brief
 
 Customer-facing teams should never learn about a change from a customer. This brief gives them what they need to explain it correctly in their own words, in one page.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Gather the facts
 
@@ -69,3 +75,9 @@ Rules:
 - One page. Link out to the spec, help article, and pricing page instead of copying them.
 - Every claim traces to a source. No invented benefits or metrics.
 - Use the product's real names for features and plans.
+
+## Related skills
+
+- **launch-readiness-checklist** — confirm it's actually ready first
+- **release-notes-drafting** — the customer-facing version of the same news
+- **pricing-packaging-change-log** — when the change touches plans or price

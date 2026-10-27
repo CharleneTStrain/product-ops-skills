@@ -1,11 +1,17 @@
 ---
 name: feature-flag-tracking
 description: Keep a clear, current register of feature flags — what each one controls, who it's on for, who owns it, and when it should be fully rolled out or removed — so customer-facing teams know what customers can actually see and old flags don't pile up. Use when someone shares a flag export or rollout list, asks "who has access to X," wants a rollout tracker, a flag cleanup, or needs to know which features are live for which customers.
+metadata:
+  version: 1.0.0
 ---
 
 # Feature flag tracking
 
 Flags make it possible to release safely, but every flag left in place is a question nobody can answer: "Can this customer see that?" The register answers it, and keeps flags from living forever.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Build the register
 
@@ -55,3 +61,9 @@ When asked whether a customer or segment can see a feature, check the register a
 ```
 
 Recommend removals and rollouts. Never change a flag yourself.
+
+## Related skills
+
+- **launch-readiness-checklist** — flags are part of being ready
+- **release-notes-drafting** — only announce what's actually on
+- **deprecation-plan** — when a flag is turning something off

@@ -1,11 +1,17 @@
 ---
 name: launch-readiness-checklist
 description: Check whether a feature or product launch is actually ready to ship across every team, and produce a go / no-go readout with owners on every gap. Use when someone asks "are we ready to launch," wants a launch checklist, a readiness review, a pre-launch audit, or is prepping for a go / no-go meeting.
+metadata:
+  version: 1.0.0
 ---
 
 # Launch readiness checklist
 
 A launch is ready when every team that touches a customer knows what's changing and has what they need. Engineering finishing the build is one row, not the whole answer.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Size the launch
 
@@ -74,3 +80,10 @@ Rules:
 - Every open item has exactly one owner. "Marketing" is not an owner; a person is.
 - If anything in the source is undecided, list it as a blocker or risk. Do not mark it Ready.
 - Recommend NO-GO when any customer-facing team would learn about the change from a customer.
+
+## Related skills
+
+- **internal-enablement-brief** — brief sales, support, and success once it's a go
+- **release-notes-drafting** — tell customers what shipped
+- **cross-team-dependency-map** — find who's still waiting on whom before launch day
+- **feature-flag-tracking** — record who the launch is on for

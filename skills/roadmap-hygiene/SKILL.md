@@ -1,11 +1,17 @@
 ---
 name: roadmap-hygiene
 description: Review a product roadmap for stale, undated, ownerless, vague, or contradictory items and produce a short cleanup list, so the roadmap people see is one they can trust. Use when someone shares a roadmap export, planning sheet, Jira or Linear view, or Productboard list and asks for a roadmap review, cleanup, audit, or "is this still accurate?"
+metadata:
+  version: 1.0.0
 ---
 
 # Roadmap hygiene
 
 A roadmap loses trust one stale item at a time. This check doesn't judge what should be on the roadmap; it judges whether what's on it is clear, current, and owned.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Inventory
 
@@ -62,3 +68,9 @@ Recommend only. Never change, move, or delete roadmap items yourself.
 ```
 
 Customer-facing issues (overpromises, contradictions with public release notes) always go to the top.
+
+## Related skills
+
+- **quarterly-planning-prep** — clean up before planning starts
+- **duplicate-request-merging** — tie requests to roadmap items
+- **decision-log** — record what was cut and why

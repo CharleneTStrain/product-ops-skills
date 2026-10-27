@@ -1,11 +1,17 @@
 ---
 name: tool-stack-audit
 description: Inventory every tool a product or go-to-market team uses — what it's for, who uses it, what it costs, where it overlaps with others, and who owns it — and recommend what to keep, consolidate, or cut. Use when someone asks for a tool audit, software or SaaS inventory, tech stack review, wants to cut tool spend, find overlapping tools, or figure out who owns which system.
+metadata:
+  version: 1.0.0
 ---
 
 # Tool stack audit
 
 Teams add tools one at a time and almost never remove them. An audit shows the whole stack at once, so overlap, unused seats, and ownerless tools become visible.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Inventory
 
@@ -64,3 +70,9 @@ When recommending consolidation, note what would be lost (features, integrations
 ```
 
 Recommend only. Never cancel, downgrade, or change any tool or contract.
+
+## Related skills
+
+- **vendor-evaluation-scorecard** — compare replacements for tools you cut
+- **information-debt-audit** — find docs stranded in retired tools
+- **raci-builder** — name an owner for each tool

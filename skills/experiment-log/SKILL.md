@@ -1,11 +1,17 @@
 ---
 name: experiment-log
 description: Record product experiments and A/B tests in a consistent log — hypothesis, setup, success metric, result, and the decision made — so the team stops rerunning old tests and can see what it has learned. Use when someone is planning a test, has results to write up, asks to log an experiment, wants an experiment brief, or asks "have we tested this before?"
+metadata:
+  version: 1.0.0
 ---
 
 # Experiment log
 
 An experiment is only useful if someone can find it later and trust what it says. The log is the team's memory of what worked, what didn't, and why.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Before the test: the brief
 
@@ -58,3 +64,9 @@ Rules:
 ```
 
 When asked whether something has been tested, search the log by area and hypothesis, and answer with matching entries or say plainly that nothing similar is logged.
+
+## Related skills
+
+- **product-metrics-definitions** — define the success metric before the test
+- **decision-log** — log the decision the result led to
+- **beta-program-manager** — when the test runs as a beta

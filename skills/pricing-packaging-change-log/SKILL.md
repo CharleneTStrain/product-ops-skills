@@ -1,11 +1,17 @@
 ---
 name: pricing-packaging-change-log
 description: Keep a dated record of every pricing and packaging change — what changed, which plans and customers it affects, when it took effect, who approved it, and who was told — so sales, support, finance, and billing all work from the same current version. Use when someone is making or documenting a pricing change, moving a feature between plans, updating plan limits, asks "what did this plan include last year," or needs to check that a change reached every team and system.
+metadata:
+  version: 1.0.0
 ---
 
 # Pricing and packaging change log
 
 Pricing changes touch more places than almost any other change: the website, billing, contracts, sales decks, help docs, in-app limits. The log makes sure each change is recorded once and carried everywhere.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Log the change
 
@@ -65,3 +71,9 @@ When asked what a plan included on a past date, read the log in date order up to
 ```
 
 Never change prices, plans, or billing settings yourself. This skill records and tracks.
+
+## Related skills
+
+- **internal-enablement-brief** — brief sales and support on the change
+- **decision-log** — record who approved it and why
+- **deprecation-plan** — when a plan is being retired

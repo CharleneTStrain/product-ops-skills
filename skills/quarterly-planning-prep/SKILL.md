@@ -1,11 +1,17 @@
 ---
 name: quarterly-planning-prep
 description: Gather and organize everything a product team needs before quarterly planning starts — last quarter's results, carried-over work, customer and business inputs, capacity, and the decisions planning must make — into one pre-read. Use when someone is preparing for quarterly or half-year planning, OKR setting, a planning offsite, or asks for a planning pre-read, planning inputs, or a look-back before the next quarter.
+metadata:
+  version: 1.0.0
 ---
 
 # Quarterly planning prep
 
 Planning meetings go badly when the first hour is spent figuring out what happened last quarter. The pre-read does that work in advance, so the meeting is spent deciding.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Look back
 
@@ -75,3 +81,10 @@ List the specific choices planning needs to make, not a list of topics:
 ```
 
 The pre-read informs the plan; it doesn't propose one. Don't rank priorities unless asked.
+
+## Related skills
+
+- **kpi-health-check** — last quarter's results
+- **voice-of-customer-digest** — customer input for the pre-read
+- **roadmap-hygiene** — clean the roadmap before planning
+- **cross-team-dependency-map** — show what each plan depends on

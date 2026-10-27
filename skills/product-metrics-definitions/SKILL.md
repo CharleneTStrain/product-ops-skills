@@ -1,11 +1,17 @@
 ---
 name: product-metrics-definitions
 description: Write one clear, agreed definition for each product metric — what it measures, the exact formula, the data source, what counts and what doesn't, and who owns it — so every dashboard and meeting means the same thing by the same word. Use when someone asks to define a metric, build a metrics glossary or dictionary, settle a "which number is right" argument, or document KPIs.
+metadata:
+  version: 1.0.0
 ---
 
 # Product metrics definitions
 
 Most metric fights aren't about the number. They're about two people using the same word for different things. A definition settles it once.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Collect every version
 
@@ -54,3 +60,9 @@ Rules:
 ```
 
 When a definition changes, keep the old one under "Last changed" so past reports still make sense.
+
+## Related skills
+
+- **kpi-health-check** — check how the defined numbers are moving
+- **data-request-router** — route new number requests to the right definition
+- **experiment-log** — use the same definitions for success metrics

@@ -1,11 +1,17 @@
 ---
 name: deprecation-plan
 description: Plan the retirement of a feature, plan, integration, or API version — who's affected, the timeline, what customers move to, the messages they'll get, and how to handle the ones who won't move. Use when someone is sunsetting, deprecating, retiring, or end-of-lifing anything customers use, or needs deprecation emails, a sunset timeline, or a migration plan.
+metadata:
+  version: 1.0.0
 ---
 
 # Deprecation plan
 
 Removing something customers use is a launch in reverse, and it needs the same care. The goal is that no customer is surprised, everyone knows what to do instead, and support isn't flooded on the last day.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Size the impact
 
@@ -73,3 +79,10 @@ For each step, list the audience, channel, and message. Draft the customer annou
 ## Open questions
 - [Unknowns that block the plan]
 ```
+
+## Related skills
+
+- **internal-enablement-brief** — brief the teams who'll get the questions
+- **pricing-packaging-change-log** — when plans or prices change with it
+- **feature-flag-tracking** — stage the turn-off by customer group
+- **decision-log** — record why it's being retired

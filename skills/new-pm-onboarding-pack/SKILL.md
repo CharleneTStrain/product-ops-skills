@@ -1,11 +1,17 @@
 ---
 name: new-pm-onboarding-pack
 description: Build an onboarding pack for a new product manager or product team member — the systems, recurring meetings, key docs, people to meet, and a first 30/60/90 days plan — so they're useful in weeks instead of months. Use when someone is onboarding a new PM, product ops hire, or product team member, wants an onboarding doc, a first-90-days plan, a "start here" page, or a list of who to meet.
+metadata:
+  version: 1.0.0
 ---
 
 # New PM onboarding pack
 
 A new PM's first month is mostly spent figuring out where things live and who to ask. An onboarding pack hands them the map on day one.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Gather what exists
 
@@ -75,3 +81,9 @@ Rules:
 - Each 30/60/90 item is something you could check off, not "build relationships."
 - Link docs instead of copying them in.
 - If the manager hasn't set 30/60/90 goals, draft them and mark them as a draft for the manager to edit.
+
+## Related skills
+
+- **process-documentation** — the SOPs a new hire needs
+- **ritual-calendar** — the meetings they'll join
+- **information-debt-audit** — check the docs you're handing them are current

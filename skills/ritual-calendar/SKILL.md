@@ -1,11 +1,17 @@
 ---
 name: ritual-calendar
 description: Design or audit a product team's operating rhythm — the recurring reviews, planning sessions, retros, readouts, and syncs — so each meeting has one clear purpose, the right people, and an output, with no gaps or overlap. Use when someone asks for a team operating cadence, meeting rhythm, ritual calendar, wants to cut meetings, set up a new team's rhythm, or figure out which meetings are actually needed.
+metadata:
+  version: 1.0.0
 ---
 
 # Ritual calendar
 
 Every recurring meeting should earn its slot by producing something: a decision, an update people act on, or a fix. A ritual calendar lays the whole rhythm out at once, so gaps and duplicates show up.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: List what exists (for an audit)
 
@@ -68,3 +74,9 @@ A product team typically needs a moment for each of these. Check which are cover
 ```
 
 Compute time totals with real arithmetic. Recommend changes; the team decides. Never create, move, or cancel calendar events yourself.
+
+## Related skills
+
+- **meeting-to-action-converter** — make every meeting end with owned actions
+- **raci-builder** — decide who belongs in each meeting
+- **quarterly-planning-prep** — place planning in the rhythm

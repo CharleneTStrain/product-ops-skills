@@ -1,6 +1,8 @@
 ---
 name: information-debt-audit
 description: Audit a set of docs, wikis, dashboards, decks, or folders for information debt — what's outdated, duplicated, conflicting, missing, or ownerless — and produce a prioritized cleanup list. Use when someone says "nobody can find anything," asks to clean up a wiki, Confluence space, Notion workspace, Google Drive, or shared folder, wants a content inventory, or is onboarding and finds conflicting answers.
+metadata:
+  version: 1.0.0
 ---
 
 # Information debt audit
@@ -8,6 +10,10 @@ description: Audit a set of docs, wikis, dashboards, decks, or folders for infor
 Information debt builds up every time something changes and the docs don't. The cost shows up later as wrong answers, repeated questions, and people trusting the wrong page.
 
 This audit uses Abby Covert's three types of information problems (from *How to Make Sense of Any Mess*): **too much** information, **not enough** information, and **not the right** information.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Inventory
 
@@ -74,3 +80,9 @@ High risk + high reach goes first.
 Actions are one of: **Update**, **Merge into [item]**, **Archive**, **Assign owner**, **Create**. Every action has a person, not a team.
 
 Never delete or archive anything yourself. Recommend; the owner decides.
+
+## Related skills
+
+- **process-documentation** — rewrite the docs the audit flags
+- **tool-stack-audit** — when the debt is spread across too many tools
+- **new-pm-onboarding-pack** — make sure new hires get current docs

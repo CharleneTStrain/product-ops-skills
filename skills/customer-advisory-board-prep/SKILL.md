@@ -1,11 +1,17 @@
 ---
 name: customer-advisory-board-prep
 description: Prepare for a customer advisory board (CAB) or customer council session — goals, member list, agenda, pre-reads, discussion questions, and a follow-up tracker that shows members what happened with their input. Use when someone is planning a CAB meeting, customer council, design partner session, or executive customer roundtable, needs a CAB agenda, invite, pre-read, or questions, or wants to write up and follow through on CAB feedback.
+metadata:
+  version: 1.0.0
 ---
 
 # Customer advisory board prep
 
 A CAB is valuable only if members feel heard and the company learns something it couldn't learn from a survey. Both depend on asking a few sharp questions and closing the loop afterward.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Set the goals
 
@@ -65,3 +71,9 @@ One page: the goals for the session, what was done with last session's input, an
 ```
 
 Never record a feature commitment that wasn't explicitly made in the session.
+
+## Related skills
+
+- **voice-of-customer-digest** — bring the latest themes to the session
+- **meeting-to-action-converter** — turn session notes into owned follow-ups
+- **feedback-tagging** — tag what members say alongside other feedback

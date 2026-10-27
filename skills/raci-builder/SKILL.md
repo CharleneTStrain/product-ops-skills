@@ -1,11 +1,17 @@
 ---
 name: raci-builder
 description: Build a RACI chart that makes clear, for each task or decision in a project, who does the work, who signs off, who gives input, and who just needs to know. Use when someone asks for a RACI, a responsibility matrix, "who owns what," role clarity for a project or launch, or when ownership keeps getting dropped between teams.
+metadata:
+  version: 1.0.0
 ---
 
 # RACI builder
 
 A RACI exists to end the question "wait, whose job was that?" It only works if every row has exactly one person accountable.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## The four roles
 
@@ -59,3 +65,9 @@ Flag every one of these:
 ```
 
 Suggest fixes, but mark them as suggestions. The people on the chart agree to it, not the person who drew it.
+
+## Related skills
+
+- **decision-log** — record decisions the chart says who makes
+- **cross-team-dependency-map** — see where ownership gaps cause waiting
+- **process-documentation** — put owners into the SOP

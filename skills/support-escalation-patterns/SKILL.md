@@ -1,11 +1,17 @@
 ---
 name: support-escalation-patterns
 description: Analyze support tickets and escalations to find which product areas, workflows, or customer types generate the most pain, what's driving it, and which fixes would remove the most tickets. Use when someone shares a ticket export, escalation log, or support data and asks what's causing tickets, where the product is hurting customers, which bugs matter most, or how to reduce support volume.
+metadata:
+  version: 1.0.0
 ---
 
 # Support escalation patterns
 
 Support tickets are the most honest product feedback a company gets. Each pattern behind a pile of tickets is something the product, the docs, or onboarding could fix once instead of support answering it a hundred times.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Prepare the data
 
@@ -63,3 +69,9 @@ Be careful with:
 ```
 
 Suggest owners by fix type (engineering, design, docs, onboarding), but don't promise fixes. Strip customer personal details from any examples.
+
+## Related skills
+
+- **feedback-tagging** — tag ticket themes consistently
+- **voice-of-customer-digest** — roll findings into the recurring digest
+- **process-documentation** — document the fix so it sticks

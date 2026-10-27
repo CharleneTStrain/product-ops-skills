@@ -1,11 +1,17 @@
 ---
 name: beta-program-manager
 description: Plan and run a product beta from start to finish — goals, who to invite, what to ask them, how to track feedback, and the criteria for ending the beta and going live. Use when someone is planning a beta, early access program, pilot, or design partner program, needs invite or check-in messages for beta customers, wants to summarize beta feedback, or is deciding whether a beta is ready to graduate.
+metadata:
+  version: 1.0.0
 ---
 
 # Beta program manager
 
 A beta that never ends, or ends because someone got tired of it, teaches nothing. Every beta needs a question it's answering and a definition of done set before it starts.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Write the beta plan
 
@@ -73,3 +79,10 @@ Tag feedback against the learning questions first, then by theme (see the feedba
 ```
 
 Recommend; the owner decides. If criteria weren't met, say so plainly, even if the date has arrived.
+
+## Related skills
+
+- **feedback-tagging** — tag what beta users say
+- **feature-flag-tracking** — track who has the beta turned on
+- **launch-readiness-checklist** — run go / no-go when the beta ends
+- **experiment-log** — when the beta tests a hypothesis

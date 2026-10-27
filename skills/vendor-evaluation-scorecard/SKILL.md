@@ -1,11 +1,17 @@
 ---
 name: vendor-evaluation-scorecard
 description: Compare two or more vendors or tools against the same weighted criteria, using evidence from demos, trials, docs, and pricing, and produce a scorecard and recommendation the team can defend. Use when someone is choosing between tools, running a software selection or RFP, comparing vendors, needs evaluation criteria, or wants to turn demo notes into a decision.
+metadata:
+  version: 1.0.0
 ---
 
 # Vendor evaluation scorecard
 
 Tool decisions often get made on the best demo or the loudest opinion. A scorecard forces every vendor through the same questions, weighted by what actually matters to this team.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Set criteria before looking at vendors
 
@@ -75,3 +81,9 @@ Risks: [what could go wrong]. Runner-up: [vendor], if [condition].
 ```
 
 If the scores are close, say so. A two-point gap isn't a clear winner; the recommendation should name what would break the tie.
+
+## Related skills
+
+- **tool-stack-audit** — check what you already pay for first
+- **decision-log** — record the pick and why
+- **raci-builder** — decide who owns the new tool

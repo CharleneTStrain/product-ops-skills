@@ -1,11 +1,17 @@
 ---
 name: retro-facilitation
 description: Plan and run a retrospective after a launch, project, sprint, or incident, then turn what came out of it into a short list of changes with owners. Use when someone asks to run a retro, post-mortem, post-launch review, lessons learned session, or after-action review, wants retro questions or an agenda, or pastes retro notes and wants them made into actions.
+metadata:
+  version: 1.0.0
 ---
 
 # Retro facilitation
 
 A retro is worth the hour only if something changes afterward. Most retros produce a long list of feelings and no owners. This one ends with two or three changes someone has agreed to make.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Set it up
 
@@ -66,3 +72,9 @@ Rules:
 - Every change is a specific behavior or process, not a value ("communicate better" is not a change; "post launch status in the launch channel every Monday" is).
 - No names attached to problems. Name owners only on changes.
 - At the next retro, start by checking whether last time's changes happened.
+
+## Related skills
+
+- **meeting-to-action-converter** — turn retro notes into owned changes
+- **process-documentation** — write the change into the process
+- **decision-log** — look back at what was decided

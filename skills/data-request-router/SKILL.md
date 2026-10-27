@@ -1,11 +1,17 @@
 ---
 name: data-request-router
 description: Turn a vague "can I get a number for X?" into a clear data request — the exact question, the metric and definition, the source, and the right person or dashboard to answer it — and check whether the answer already exists before anyone pulls new data. Use when someone asks for data, a metric, a report, a quick number, or an analysis and it's unclear where it lives or who owns it, or when someone is managing a queue of incoming data requests.
+metadata:
+  version: 1.0.0
 ---
 
 # Data request router
 
 Most data requests are slow not because the data is hard to get, but because the question is unclear, the answer already exists somewhere, or it went to the wrong person. Routing fixes all three before any query is written.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Sharpen the question
 
@@ -67,3 +73,8 @@ Use the team's actual owners if known. Otherwise, name the type of owner and fla
 ```
 
 Don't run the analysis or estimate the number unless asked. The job here is to get the question to the right place, clearly.
+
+## Related skills
+
+- **product-metrics-definitions** — check whether a definition already exists
+- **kpi-health-check** — when the question is really 'is this number off?'

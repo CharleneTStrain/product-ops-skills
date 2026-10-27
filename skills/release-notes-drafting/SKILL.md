@@ -1,11 +1,17 @@
 ---
 name: release-notes-drafting
 description: Turn engineering tickets, changelogs, PR titles or sprint summaries into customer-facing release notes. Use whenever someone asks for release notes, a changelog entry, a "what's new" post, a product update email, or a monthly product drop summary, even if they only paste raw ticket titles.
+metadata:
+  version: 1.0.0
 ---
 
 # Release notes drafting
 
 Release notes exist so a customer can answer one question in under ten seconds: "Does this change anything for me?" Everything below serves that.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Inputs to gather
 
@@ -63,3 +69,9 @@ Before handing it over:
 - Every item traces back to something in the source.
 - Nothing internal-only slipped in.
 - A customer who reads only the bold headlines still gets the gist.
+
+## Related skills
+
+- **sprint-review-summary** — the internal version of what shipped
+- **internal-enablement-brief** — brief the field before the notes go out
+- **feature-flag-tracking** — check what customers can actually see

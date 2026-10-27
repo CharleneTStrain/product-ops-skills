@@ -1,11 +1,17 @@
 ---
 name: meeting-to-action-converter
 description: Turn meeting notes, transcripts, or recordings summaries into a short recap of action items with one owner and a due date each, plus decisions and open questions. Use when someone pastes meeting notes or a transcript and wants next steps, action items, a recap email, a follow-up message, or asks "what did we agree to?"
+metadata:
+  version: 1.0.0
 ---
 
 # Meeting to action converter
 
 Most meetings end with everyone agreeing and nobody owning anything. This skill finds the commitments hidden in the conversation and makes each one specific enough to check off.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: Find the commitments
 
@@ -54,3 +60,9 @@ If two people both said they'd handle something, list it once with both names an
 Keep it short enough to paste into chat or email as is. No meeting narrative, no "great discussion," no summary of who said what unless asked.
 
 If the person wants a follow-up message, write it as the recap with one opening line, ready to send.
+
+## Related skills
+
+- **decision-log** — log the decisions in full
+- **ritual-calendar** — check the meeting has a clear purpose
+- **cross-team-dependency-map** — track actions that block other teams

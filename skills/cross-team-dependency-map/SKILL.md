@@ -1,11 +1,17 @@
 ---
 name: cross-team-dependency-map
 description: Map which teams or people are waiting on which others across a project, launch, or quarter — what's needed, by when, and what's at risk — so blockers surface before they slip the date. Use when someone asks who's blocked, wants a dependency map or tracker, is planning a cross-team launch or quarter, or says work keeps stalling between teams.
+metadata:
+  version: 1.0.0
 ---
 
 # Cross-team dependency map
 
 Most slipped dates aren't one team being slow. They're one team waiting on another that didn't know it was being waited on. This map makes every wait visible and owned.
+
+## Before you start
+
+If `.agents/product-ops-context.md` exists (or `.claude/product-ops-context.md`), read it first. Use the team, owners, tools, meetings, and metric definitions it already has, and only ask for what's missing or specific to this task. If it doesn't exist, go ahead with what you're given, and suggest running **product-ops-context** once so the next skill doesn't have to ask.
 
 ## Step 1: List every dependency
 
@@ -57,3 +63,9 @@ Write the table, then offer a simple visual. A swim lane diagram (one lane per t
 ```
 
 Every "Needs attention" row ends with a next step and a person, usually "Confirm date with [provider]."
+
+## Related skills
+
+- **raci-builder** — make ownership clear on each dependency
+- **launch-readiness-checklist** — check dependencies before launch
+- **ritual-calendar** — decide where blockers get reviewed
