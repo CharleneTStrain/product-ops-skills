@@ -4,7 +4,7 @@
 
 **Browse every skill at [charlenetstrain.github.io/product-ops-skills](https://charlenetstrain.github.io/product-ops-skills/).**
 
-Built by [Charlene Strain](https://www.linkedin.com/in/charlene-strain).
+Built by [Charlene Strain](https://www.linkedin.com/in/charlene-strain). Sibling library: [Product Marketing Ops Skills](https://github.com/CharleneTStrain/product-marketing-ops-skills).
 
 **Contributions welcome.** Have a better way to run one of these, or a skill to add? [Open a PR](#contributing) or [request a skill](https://github.com/CharleneTStrain/product-ops-skills/issues/new?template=skill-request.yml).
 
